@@ -6,8 +6,53 @@ export function createFighterPreview(fighter, position) {
     tagName: 'div',
     className: `fighter-preview___root ${positionClassName}`,
   });
-
-  // todo: show fighter info (image, name, health, etc.)
+  if(fighter===undefined){
+    return fighterElement;
+  }
+  const {source:src,name, health, attack, defense, } = fighter;
+  const params = {name, health, attack, defense};
+  const imgElement = createElement({
+    tagName:"img",
+    className:"img",
+    attributes:{src}
+  });
+  fighterElement.appendChild(imgElement);
+  const fighterParamBlock = createElement({
+    tagName:"div",
+    className:"fighter-param-block",
+  });
+  Object.keys(params).forEach(key=>{
+    if(key==="name"){
+      const element = createElement({
+        tagName:"p",
+        className:"",
+      });
+      element.innerHTML = `${key} : ${params[key]}`;
+      fighterParamBlock.appendChild(element);
+    }else{
+      const divWrap = createElement({
+        tagName:"div",
+        className:"",
+        attributes:{
+        }
+      });
+      const paramsElement = createElement({
+        tagName:"span",
+        className:"",
+      });
+      paramsElement.innerHTML = `${key} : ${params[key]}</br>`;
+      const progressElement = createElement({
+        tagName:"progress",
+        className:"progress",
+      });
+      progressElement.max=+params[key]>10?60:5;
+      progressElement.value = +params[key];
+      divWrap.appendChild(paramsElement);
+      divWrap.appendChild(progressElement);
+      fighterParamBlock.appendChild(divWrap);
+    }
+  });
+  fighterElement.appendChild(fighterParamBlock);
 
   return fighterElement;
 }
