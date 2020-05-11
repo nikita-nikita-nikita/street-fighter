@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
+
+.fighter-param-block{
+    background-color: rgba(255,223,167,0.4);
+    width: 100%;
+    color: #9B0303;
+    font-family: 'Trade Winds';
+    border-radius: 1em;
+}
+
+.progress{
+    background: #ddd;
+    height: 10px;
+}
+
+.fighter-preview___right img{
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
