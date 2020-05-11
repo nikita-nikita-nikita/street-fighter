@@ -1,3 +1,10 @@
+import {showModal} from "./modal";
+import {createElement} from "../../helpers/domHelper";
 export function showWinnerModal(fighter) {
-  // call showModal function 
+    const img = createElement({
+        tagName:"img",
+        className:"",
+        attributes:{src:fighter.source}
+    });
+    showModal({title:`Winner : ${fighter.name}` , bodyElement: img , onClose: () => {}});
 }
